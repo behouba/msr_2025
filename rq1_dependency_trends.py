@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# You can download dependency_data.csv here https://mega.nz/file/dIJADCzT#VOdYTl3_RDrQ9XgW-u4A8RAaPUsd6yCbx9uJKbi7idU
-data = pd.read_csv("dependency_data.csv")
+# You can download pre-mined dependency_data.csv here https://mega.nz/file/dIJADCzT#VOdYTl3_RDrQ9XgW-u4A8RAaPUsd6yCbx9uJKbi7idU
+data = pd.read_csv("data/dependency_data.csv")
 
 data['Release_Date'] = pd.to_datetime(data['Release_Date'], unit='ms')
 
