@@ -57,7 +57,7 @@ pip install -r requirements.txt
 python rq1_fetch_deps.py
 ```
 
-Given the large database, the script may take several hours to complete. Once finished, it will generate a `dependency_data.csv` file in the `data` folder.
+Given the large database, the script may take several hours to complete. Once finished, it will generate a `dependency_data.csv` file in the `data` folder. Alternatively, you can download the pre-mined data [here](https://mega.nz/file/dIJADCzT#VOdYTl3_RDrQ9XgW-u4A8RAaPUsd6yCbx9uJKbi7idU).
 
 
 ## Analyze and Plot Dependency Trends
