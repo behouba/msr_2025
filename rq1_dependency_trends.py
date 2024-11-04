@@ -2,10 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Load the data
-df = pd.read_csv("data/dependency_data.csv")
+DATA_SOURCE="data/dependency_data.csv"
 
-# Convert Release_Date to datetime
+df = pd.read_csv(DATA_SOURCE)
+
 df['Release_Date'] = pd.to_datetime(df['Release_Date'], unit='ms')
 
 df['Year'] = df['Release_Date'].dt.year

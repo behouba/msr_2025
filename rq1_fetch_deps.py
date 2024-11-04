@@ -15,7 +15,6 @@ NEO4J_USER = "neo4j"
 NEO4J_PASSWORD = "Password1"
 OUTPUT_FILE="data/dependency_data.csv"
 
-# Initialize Neo4j driver
 driver = GraphDatabase.driver(NEO4J_URI, auth=(NEO4J_USER, NEO4J_PASSWORD))
 
 # List all libraries
@@ -56,7 +55,6 @@ def get_dependency_count(library_id, release_version):
 
 # Collect data for RQ1
 def collect_dependency_data():
-    # Initialize CSV file with headers
     with open(OUTPUT_FILE, mode="w", newline="", encoding="utf-8") as file:
         writer = csv.writer(file)
         writer.writerow(["Library", "Version", "Release_Date", "Dependency_Count"])
@@ -89,5 +87,4 @@ def collect_dependency_data():
 
 collect_dependency_data()
 
-# Close the Neo4j driver
 driver.close()

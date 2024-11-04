@@ -67,3 +67,16 @@ After collecting the data, use the following command to analyze and visualize de
 ```bash
 python rq1_dependency_trends.py 
 ```
+
+
+### Plot average dependency count over time
+
+![Plot average dependency count over time](rq1_figure1.png)
+
+### Plot year-over-year percentage change in dependency count
+
+![Plot year-over-year percentage change in dependency count](rq1_figure2.png)
+
+### Box plot of dependency counts by year
+
+![Box plot of dependency counts by year](rq1_figure3.png)
