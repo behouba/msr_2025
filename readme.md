@@ -31,7 +31,7 @@ The data is thus persistent.
 
 # Getting the data for RQ1: Do libraries use more dependencies now than in the
 
-To answer RQ1, "Do libraries use more dependencies now than in the past?", we collect data on the number of dependencies per library release. By comparing these dependency counts over different timeframes, we can observe trends in dependency usage.
+For RQ1, the approach is to fetch all libraries, then for each library, retrieve its releases and count the number of dependencies for each release. Finally, we use the dependency counts for each library release to compare averages across different timeframes and observe changes in dependency usage over time.
 
 
 
