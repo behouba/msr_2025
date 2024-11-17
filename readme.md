@@ -29,7 +29,7 @@ The data is thus persistent.
 - **Weaver documentation** will be accessible via http://localhost:8080/swagger-ui/index.html
 
 
-# Getting the data for RQ1: Do libraries use more dependencies now than in the
+# Data for RQ1: Do libraries tend to use more dependencies than in the past?
 
 For RQ1, the approach is to fetch all libraries, then for each library, retrieve its releases and count the number of dependencies for each release. Finally, we use the dependency counts for each library release to compare averages across different timeframes and observe changes in dependency usage over time.
 
