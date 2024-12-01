@@ -1,3 +1,15 @@
+# MSR 2025: Analysis Of The Evolution of Libraries in Maven Central Ecosystem
+
+This repository contains the code and instructions to reproduce the analysis conducted for our study on the evolution of libraries within the Maven Central ecosystem. The study focuses on two key research questions:
+1. **Do libraries tend to use more dependencies than in the past?**  
+2. **Is the rhythm of library releases higher than in the past, and how has this rhythm evolved over time?**
+
+This repository is based on a fork of [Neo4jWeaverDocker](https://github.com/Goblin-Ecosystem/Neo4jWeaverDocker). The section **# Setup Goblin Dataset and Weaver Docker** is directly adapted from the original repository to simplify the setup of the Maven Central database and Weaver API using Docker.
+
+Additionally, the repository contains Jupyter notebooks in the `notebooks` folder to facilitate data exploration, visualization, and reproducibility of the analysis.
+
+---
+
 # Setup Goblin dataset and weaver docker
 
 This directory allows you to set up the [Maven Central Neo4j database](https://zenodo.org/records/11104819) and the [Weaver API](https://github.com/Goblin-Ecosystem/goblinWeaver) easily using Docker.
@@ -80,3 +92,30 @@ python rq1_dependency_trends.py
 ### Box plot of dependency counts by year
 
 ![Box plot of dependency counts by year](rq1_figure3.png)
+
+# Data for RQ2: Is the rhythm of library releases higher than in the past?
+
+For RQ2, the approach is to analyze the release patterns of libraries over time. The goal is to identify trends in the frequency of library releases and the interval between consecutive releases.
+
+## Collect Release Data
+
+The data for this analysis is part of the `dependency_data.csv` file generated during RQ1 data collection. This file contains the release dates for each library version, which will be used to calculate release intervals and frequencies.
+
+## Analyze and Plot Release Rhythm Trends
+
+Run the following script to analyze and visualize library release rhythms:
+
+```bash
+python rq2_release_requency.py
+```
+
+### Plot Release Frequency Over Time
+
+This plot shows the total number of library releases per year, highlighting trends in release activity over time.
+
+![Library Release Frequency Over Time](rq2_figure1.png)
+
+### Plot Average Release Interval Over Time
+This plot shows the average interval (in days) between consecutive releases for libraries, providing insights into how the rhythm of releases has evolved.
+
+![Average Release Interval Over Time](rq2_figure2.png)
