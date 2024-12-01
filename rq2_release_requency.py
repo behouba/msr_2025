@@ -1,43 +1,50 @@
+# Importing required libraries
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from datetime import datetime
 
-df = pd.read_csv("data/dependency_data.csv")
+# Set visualization style
+sns.set(style="whitegrid")
 
-# Convert Release_Date to datetime format and extract the year
-df['Release_Date'] = pd.to_datetime(df['Release_Date'], unit='ms')
-df['Year'] = df['Release_Date'].dt.year
+# Load data
+data = pd.read_csv("/home/behouba/Desktop/polymtl/releaseEngLOG6307E/assignements/msr_2025/msr_2025/data/dependency_data.csv")
 
-# Calculate the number of releases per library per year
-releases_per_library_year = df.groupby(['Library', 'Year']).size().reset_index(name='Release_Count')
+# Convert Unix timestamps in the Release_Date column to datetime
+data['Release_Date'] = pd.to_datetime(data['Release_Date'], unit='ms')
 
-# Calculate the average release count per year
-yearly_avg_releases = releases_per_library_year.groupby('Year')['Release_Count'].mean()
+# Extract the year from each release date
+data['Year'] = data['Release_Date'].dt.year
 
-# Calculate the median and 75th percentile of release counts per year
-yearly_release_stats = releases_per_library_year.groupby('Year')['Release_Count'].agg(['mean', 'median', lambda x: x.quantile(0.75)])
-yearly_release_stats.columns = ['Mean', 'Median', '75th_Percentile']
+# Count releases per year
+yearly_releases = data.groupby('Year').size()
 
-# Plot average release count over time
-# plt.figure(figsize=(10, 6))
-# sns.lineplot(data=yearly_avg_releases, marker='o', color="blue")
-# plt.title("Average Release Frequency per Library Over Time")
-# plt.xlabel("Year")
-# plt.ylabel("Average Releases per Library")
-# plt.show()
+# Plot the release count by year
+plt.figure(figsize=(12, 6))
+sns.lineplot(x=yearly_releases.index, y=yearly_releases.values, marker='o')
+plt.title('Library Release Frequency Over Time')
+plt.xlabel('Year')
+plt.ylabel('Number of Releases')
+plt.grid(True)
+plt.show()
 
-# Box plot of release counts by year
-# plt.figure(figsize=(12, 8))
-# sns.boxplot(x="Year", y="Release_Count", data=releases_per_library_year)
-# plt.title("Distribution of Release Counts per Library by Year")
-# plt.xticks(rotation=45)
-# plt.show()
 
-# Plot year-over-year percentage change in average release frequency
-# yearly_pct_change = yearly_avg_releases.pct_change() * 100
-# plt.figure(figsize=(10, 6))
-# yearly_pct_change.plot(kind='bar', color='skyblue')
-# plt.title("Year-over-Year Percentage Change in Release Frequency")
-# plt.xlabel("Year")
-# plt.ylabel("Percentage Change (%)")
-# plt.show()
+# Sort data by library and release date for interval calculations
+data = data.sort_values(by=['Library', 'Release_Date'])
+
+# Calculate release interval (in days) for each library's consecutive releases
+data['Release_Interval_Days'] = data.groupby('Library')['Release_Date'].diff().dt.days
+
+# Filter out rows with NaN intervals (first release of each library)
+intervals = data.dropna(subset=['Release_Interval_Days'])
+
+# Plot average release interval over time to observe any trends
+avg_interval_per_year = intervals.groupby('Year')['Release_Interval_Days'].mean()
+
+plt.figure(figsize=(12, 6))
+sns.lineplot(x=avg_interval_per_year.index, y=avg_interval_per_year.values, marker='o', color='orange')
+plt.title('Average Release Interval Over Time')
+plt.xlabel('Year')
+plt.ylabel('Average Release Interval (Days)')
+plt.grid(True)
+plt.show()
