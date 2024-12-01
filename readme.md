@@ -1,6 +1,8 @@
-# MSR 2025: Analysis Of The Evolution of Libraries in Maven Central Ecosystem
+# Maven Central Ecosystem Evolution Analysis (MSR 2025)
 
-This repository contains the code and instructions to reproduce the analysis conducted for our study on the evolution of libraries within the Maven Central ecosystem. The study focuses on two key research questions:
+This repository is part of the final project for the course **LOG6307E - Release Engineering and Mining Software Repositories** at **Polytechnique Montréal**. It is based on the [MSR 2025 Mining Challenge](https://2025.msrconf.org/track/msr-2025-mining-challenge) and focuses on analyzing the evolution of libraries in the Maven Central ecosystem.
+
+The team aims to answer two key research questions:
 1. **Do libraries tend to use more dependencies than in the past?**  
 2. **Is the rhythm of library releases higher than in the past, and how has this rhythm evolved over time?**
 
